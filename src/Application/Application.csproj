@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <RootNamespace>asp_net_mvc_sample</RootNamespace>
+        <Nullable>annotations</Nullable>
+        <RootNamespace>MovieCatalog.Application</RootNamespace>
     </PropertyGroup>
 
 </Project>
