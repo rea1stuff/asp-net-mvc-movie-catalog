@@ -37,13 +37,22 @@ public class UserIdentityService : IUserIdentityService
         await _signInManager.SignInAsync(user, true);
     }
 
-    public async Task Login()
+    public async Task Login(LoginDto loginDto)
     {
-        throw new NotImplementedException();
+        var result = await _signInManager.PasswordSignInAsync(
+            loginDto.UserName, 
+            loginDto.Password, 
+            loginDto.RememberMe, 
+            false);
+
+        if (!result.Succeeded)
+        {
+            throw new InvalidLoginException();
+        }
     }
 
     public async Task Logout()
     {
-        throw new NotImplementedException();
+        await _signInManager.SignOutAsync();
     }
 }
