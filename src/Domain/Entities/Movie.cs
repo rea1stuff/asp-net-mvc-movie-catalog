@@ -1,11 +1,13 @@
-﻿namespace MovieCatalog.Domain.Entities;
+﻿using MovieCatalog.Domain.Entities.ValueObjects;
 
-public class Movie
+namespace MovieCatalog.Domain.Entities;
+
+public class Movie : BaseEntity
 {
     public string Title { get; }
     public string Description { get; }
     public ReleaseYear ReleaseYear { get; }
     public Director Director { get; }
-    public User User { get; }
     public string Path { get; }
+    public User User { get; }
 }
