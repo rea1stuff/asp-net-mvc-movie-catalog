@@ -1,8 +1,10 @@
-﻿namespace MovieCatalog.Application.Users;
+﻿using MovieCatalog.Application.Users.Dtos;
+
+namespace MovieCatalog.Application.Users;
 
 public interface IUserService
 {
-    public void Register();
-    public void Login();
+    public void Register(RegistrationDto registrationDto);
+    public void Login(LoginDto loginDto);
     public void Logout();
 }
