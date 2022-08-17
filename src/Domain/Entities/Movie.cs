@@ -1,8 +1,9 @@
 ﻿using MovieCatalog.Domain.Entities.ValueObjects;
+using MovieCatalog.Domain.Interfaces;
 
 namespace MovieCatalog.Domain.Entities;
 
-public class Movie : BaseEntity
+public class Movie : BaseEntity, IAggregateRoot
 {
     public string Title { get; }
     public string Description { get; }
