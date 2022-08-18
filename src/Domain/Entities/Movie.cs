@@ -5,10 +5,10 @@ namespace MovieCatalog.Domain.Entities;
 
 public class Movie : BaseEntity, IAggregateRoot
 {
-    public string Title { get; }
-    public string Description { get; }
-    public ReleaseYear ReleaseYear { get; }
-    public Director Director { get; }
-    public string Path { get; }
-    public User User { get; }
+    public string Title { get; private set; }
+    public string Description { get; private set; }
+    public ReleaseYear ReleaseYear { get; private set; }
+    public Director Director { get; private set; }
+    public string Path { get; private set; }
+    public User User { get; private set; }
 }

@@ -4,6 +4,10 @@ namespace MovieCatalog.Domain.Entities.ValueObjects;
 
 public class Director
 {
+    private Director()
+    {
+        
+    }
     public Director(string name)
     {
         Guard.Against.NullOrEmpty(name);
@@ -11,5 +15,5 @@ public class Director
         Name = name;
     }
     
-    public string Name { get; }
+    public string Name { get; private set; }
 }

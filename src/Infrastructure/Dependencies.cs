@@ -16,10 +16,10 @@ public static class Dependencies
         IConfiguration configuration, IServiceCollection services)
     {
         services.AddDbContext<MovieCatalogContext>(c =>
-            c.UseNpgsql(configuration.GetConnectionString("MovieCatalogConnection")));
+            c.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=test;Database=MovieDb"));
         
         services.AddDbContext<IdentityDbContext>(options =>
-            options.UseNpgsql(configuration["IdentityDbConnection"]));
+            options.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=test;Database=IdentityDb"));
         
         services.AddScoped<IUserIdentityService, UserIdentityService>();
         services.AddScoped(
