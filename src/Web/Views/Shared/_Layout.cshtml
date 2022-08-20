@@ -5,23 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@ViewData["Title"] - Movie Catalog</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+        @@import "./css/style.css";
+    </style>
 </head>
 <body>
-<header>
-    
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
+
+<div class="containerGrid">
+    <partial name="_Header"/>
+
+    <aside class="sidebar">
+        <div class="sidebar_item">
+            <a href="#" class="btn btn-primary">Добавить фильм</a>
+        </div>
+    </aside>
+
+    <main>
         @RenderBody()
     </main>
+    
+    <partial name="_Footer"/>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        
-    </div>
-</footer>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

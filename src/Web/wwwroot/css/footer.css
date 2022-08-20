@@ -1,0 +1,22 @@
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer_item {
+    margin: 0 10px;
+}
+
+.footer_title {
+    font-size: 1.1rem;
+    font-family: 'Silkscreen', cursive;
+}
+
+.box {
+    width: 40px;
+    height: 40px;
+    background: gray;
+    border-radius: 50%;
+}

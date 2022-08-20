@@ -1,0 +1,63 @@
+html {
+  font-size: 16px;
+}
+
+p {
+  margin: 0;
+}
+
+.containerGrid {
+  display: grid;
+  grid-template-areas: 
+    'header header'
+    'sidebar main'
+    'footer footer';
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 100px 1fr 100px;
+  
+  height: 100vh;
+  gap: 0.5em;
+}
+
+header {
+  grid-area: header;
+  
+  background: mediumpurple;
+}
+
+.sidebar{
+  grid-area: sidebar;
+
+  background: red;
+}
+
+main {
+  grid-area: main;
+  
+  background: yellow;
+}
+
+footer {
+  grid-area: footer;
+  
+  background: gold;
+}
+
+header, footer {
+  min-height: 70px;
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+  .containerGrid {
+    grid-template-areas: 
+    'header'
+    'sidebar'
+    'main'
+    'footer';
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 100px 1fr 100px;
+  }
+}

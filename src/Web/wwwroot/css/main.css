@@ -1,0 +1,13 @@
+﻿.cards {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
+    margin-top: 15px;
+}
+
+.card-buttons {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}

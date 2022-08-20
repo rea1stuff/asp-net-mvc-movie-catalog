@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using MovieCatalog.Infrastructure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +13,8 @@ app.Run();
 
 void ConfigureServices()
 {
-    builder.Services.AddControllersWithViews();
+    builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+    //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
     MovieCatalog.Application.Dependencies.AddApplication(builder.Services);
     MovieCatalog.Infrastructure.Dependencies.AddInfrastructure(
         builder.Configuration, builder.Services);
@@ -42,5 +41,5 @@ void ConfigureMiddlewares()
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
     
-    app.MapRazorPages();
+    //app.MapRazorPages();
 }
