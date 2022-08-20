@@ -1,7 +1,7 @@
 ﻿<header>
     <div class="header_section">
         <div class="header_item logo">
-            <img src="images/logo.png" alt="logo" width="70px" height="70px">
+            <img src="~/images/logo.png" alt="logo" width="70px" height="70px">
         </div>
         <div class="header_item title">
             <h1>Title example....</h1>
@@ -9,12 +9,13 @@
     </div>
     <div class="header_section">
         <div class="header_item auth">
-            <a href="#" class="btn btn-primary header_item inner-text sign-in">
-                Sign In
-            </a>
-            <a href="#" class="btn btn-success header_item inner-text log-in">
-                Log In
-            </a>
+            <button type="button" class="btn btn-primary mx-auto header_item inner-text log-in" data-bs-toggle="modal" data-bs-target="#ModalForm">
+                Register
+            </button>
+            <button type="button" class="btn btn-success mx-auto header_item inner-text log-in" data-bs-toggle="modal" data-bs-target="#ModalForm">
+                Login
+            </button>
+            <partial name="Modals/_LoginModal"/>
         </div>
     </div>
 </header>
