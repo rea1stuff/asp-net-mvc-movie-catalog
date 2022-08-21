@@ -1,17 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using MovieCatalog.Application.Exceptions;
 using MovieCatalog.Application.Users;
 using MovieCatalog.Application.Users.Dtos;
+using MovieCatalog.Web.Extensions;
 
 namespace MovieCatalog.Web.Controllers;
 
 public class UserController : Controller
 {
+    private IValidator<RegistrationDto> _registerValidator;
+    private IValidator<LoginDto> _loginValidator;
     private readonly IUserService _userService;
 
-    public UserController(IUserService userService)
+    public UserController(
+        IUserService userService, 
+        IValidator<RegistrationDto> registerValidator, 
+        IValidator<LoginDto> loginValidator)
     {
         _userService = userService;
+        _registerValidator = registerValidator;
+        _loginValidator = loginValidator;
     }
 
     public IActionResult Register()
@@ -22,8 +32,11 @@ public class UserController : Controller
     [HttpPost]
     public async Task<IActionResult> Register(RegistrationDto model)
     {
-        if (!ModelState.IsValid)
+        ValidationResult result = await _registerValidator.ValidateAsync(model);
+        if (!result.IsValid)
         {
+            result.AddToModelState(ModelState);
+            
             return View(model);
         }
 
@@ -54,8 +67,12 @@ public class UserController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginDto model)
     {
-        if (!ModelState.IsValid)
+        ValidationResult result = await _loginValidator.ValidateAsync(model);
+        
+        if (!result.IsValid)
         {
+            result.AddToModelState(ModelState);
+            
             return View(model);
         }
 

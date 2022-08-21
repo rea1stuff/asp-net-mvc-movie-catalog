@@ -27,19 +27,19 @@
                         <form method="post" asp-controller="User" asp-action="Register" class="needs-validation" novalidate="" autocomplete="off">
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="name">Username</label>
+                                <label class="mb-2 text-muted" asp-for="UserName"></label>
                                 <input asp-for="UserName" id="name" type="text" class="form-control" required autofocus>
                                 <span asp-validation-for="UserName" class="text-danger"></span>
                             </div>
 
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="password">Password</label>
+                                <label class="mb-2 text-muted" asp-for="Password"></label>
                                 <input asp-for="Password" id="password" type="password" class="form-control">
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
 
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="password">Password</label>
+                                <label class="mb-2 text-muted" asp-for="ConfirmPassword"></label>
                                 <input asp-for="ConfirmPassword" id="confirmPassword" type="password" class="form-control" required>
                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>
