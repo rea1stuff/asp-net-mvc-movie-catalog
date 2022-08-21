@@ -4,7 +4,7 @@ namespace MovieCatalog.Application.Users;
 
 public interface IUserService
 {
-    public void Register(RegistrationDto registrationDto);
-    public void Login(LoginDto loginDto);
-    public void Logout();
+    public Task Register(RegistrationDto registrationDto);
+    public Task Login(LoginDto loginDto);
+    public Task Logout();
 }

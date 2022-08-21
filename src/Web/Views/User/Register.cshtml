@@ -1,4 +1,68 @@
-﻿
-<div>
-    Hello
-</div>
+﻿@model MovieCatalog.Application.Users.Dtos.RegistrationDto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+</head>
+
+<body>
+<section class="h-100">
+    <div class="container h-100">
+        <div class="row justify-content-sm-center h-100">
+            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                <div class="text-center my-5">
+                    <a asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logo" width="100"></a>
+                </div>
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
+                        <form method="post" asp-controller="User" asp-action="Register" class="needs-validation" novalidate="" autocomplete="off">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted" for="name">Username</label>
+                                <input asp-for="UserName" id="name" type="text" class="form-control" required autofocus>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted" for="password">Password</label>
+                                <input asp-for="Password" id="password" type="password" class="form-control">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted" for="password">Password</label>
+                                <input asp-for="ConfirmPassword" id="confirmPassword" type="password" class="form-control" required>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+
+                            <div class="align-items-center d-flex">
+                                <button type="submit" class="btn btn-primary ms-auto">
+                                    Register
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer py-3 border-0">
+                        <div class="text-center">
+                            Already have an account? <a asp-controller="User" asp-action="Login" class="text-dark">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<partial name="_ValidationScriptsPartial"/>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

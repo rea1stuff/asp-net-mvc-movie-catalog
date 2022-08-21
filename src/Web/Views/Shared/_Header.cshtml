@@ -9,13 +9,21 @@
     </div>
     <div class="header_section">
         <div class="header_item auth">
-            <button type="button" class="btn btn-primary mx-auto header_item inner-text log-in" data-bs-toggle="modal" data-bs-target="#ModalForm">
-                Register
-            </button>
-            <button type="button" class="btn btn-success mx-auto header_item inner-text log-in" data-bs-toggle="modal" data-bs-target="#ModalForm">
-                Login
-            </button>
-            <partial name="Modals/_LoginModal"/>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="User" asp-action="Register" class="btn btn-primary mx-auto header_item inner-text log-in">
+                    Register
+                </a>
+                <a asp-controller="User" asp-action="Login" class="btn btn-success mx-auto header_item inner-text log-in">
+                    Login
+                </a>
+            }
+            else
+            {
+                <a asp-controller="User" asp-action="Logout" class="btn btn-primary mx-auto header_item inner-text log-in">
+                    Logout
+                </a>
+            }
         </div>
     </div>
 </header>

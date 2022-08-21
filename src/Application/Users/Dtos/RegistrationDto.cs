@@ -1,7 +1,23 @@
-﻿namespace MovieCatalog.Application.Users.Dtos;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace MovieCatalog.Application.Users.Dtos;
 
 public class RegistrationDto
 {
-    public string UserName { get; private set; }
-    public string Password { get; private set; }
+    [Required(ErrorMessage = "Поле обязательно")]
+    [DataType(DataType.Text)]
+    [StringLength(30, MinimumLength = 4, ErrorMessage = "От 4х до 30 символов")]
+    public string UserName { get; set; }
+    
+    [Required(ErrorMessage = "Поле обязательно")]
+    [DataType(DataType.Password)]
+    [Compare("ConfirmPassword")]
+    [StringLength(30, MinimumLength = 4, ErrorMessage = "От 4х до 30 символов")]
+    public string Password { get; set; }
+    
+    [Required(ErrorMessage = "Поле обязательно")]
+    [DataType(DataType.Password)]
+    [StringLength(30, MinimumLength = 4, ErrorMessage = "От 4х до 30 символов")]
+    public string ConfirmPassword { get; set; }
 }

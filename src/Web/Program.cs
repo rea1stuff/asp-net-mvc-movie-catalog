@@ -14,10 +14,8 @@ app.Run();
 void ConfigureServices()
 {
     builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-    //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
     MovieCatalog.Application.Dependencies.AddApplication(builder.Services);
-    MovieCatalog.Infrastructure.Dependencies.AddInfrastructure(
-        builder.Configuration, builder.Services);
+    MovieCatalog.Infrastructure.Dependencies.AddInfrastructure(builder.Services);
 }
 
 void ConfigureMiddlewares()
@@ -40,6 +38,4 @@ void ConfigureMiddlewares()
     app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
-    
-    //app.MapRazorPages();
 }

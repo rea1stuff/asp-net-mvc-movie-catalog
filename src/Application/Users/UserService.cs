@@ -18,21 +18,21 @@ public class UserService : IUserService
         _movieCatalogRepository = movieCatalogRepository;
     }
 
-    public void Register(RegistrationDto registrationDto)
+    public async Task Register(RegistrationDto registrationDto)
     {
         string uId = Guid.NewGuid().ToString();
-
-        _userIdentityService.Register(registrationDto, uId);
-        _movieCatalogRepository.AddAsync(new User(uId));
+        
+        await _userIdentityService.Register(registrationDto, uId);
+        await _movieCatalogRepository.AddAsync(new User(uId));
     }
 
-    public void Login(LoginDto loginDto)
+    public async Task Login(LoginDto loginDto)
     {
-        _userIdentityService.Login(loginDto);
+        await _userIdentityService.Login(loginDto);
     }
 
-    public void Logout()
+    public async Task Logout()
     {
-        _userIdentityService.Logout();
+        await _userIdentityService.Logout();
     }
 }

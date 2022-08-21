@@ -12,8 +12,7 @@ namespace MovieCatalog.Infrastructure;
 
 public static class Dependencies
 {
-    public static void AddInfrastructure(
-        IConfiguration configuration, IServiceCollection services)
+    public static void AddInfrastructure(IServiceCollection services)
     {
         services.AddDbContext<MovieCatalogContext>(c =>
             c.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=test;Database=MovieDb"));
