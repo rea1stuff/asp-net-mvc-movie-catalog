@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - Movie Catalog</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/style.css"/>
     <style>
@@ -14,12 +14,7 @@
 
 <div class="containerGrid">
     <partial name="_Header"/>
-
-    <aside class="sidebar">
-        <div class="sidebar_item">
-            <a href="#" class="btn btn-primary">Добавить фильм</a>
-        </div>
-    </aside>
+    <partial name="_SideBar"/>
 
     <main>
         @RenderBody()

@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using MovieCatalog.Application.Exceptions;
 using MovieCatalog.Application.Users;
 using MovieCatalog.Application.Users.Dtos;
-using MovieCatalog.Web.Extensions;
 
 namespace MovieCatalog.Web.Controllers;
 
@@ -35,7 +35,7 @@ public class UserController : Controller
         ValidationResult result = await _registerValidator.ValidateAsync(model);
         if (!result.IsValid)
         {
-            result.AddToModelState(ModelState);
+            result.AddToModelState(ModelState, null);
             
             return View(model);
         }
@@ -56,7 +56,7 @@ public class UserController : Controller
             return View(model);
         }
 
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Movie");
     }
 
     public IActionResult Login()
@@ -71,7 +71,7 @@ public class UserController : Controller
         
         if (!result.IsValid)
         {
-            result.AddToModelState(ModelState);
+            result.AddToModelState(ModelState, null);
             
             return View(model);
         }
@@ -86,13 +86,13 @@ public class UserController : Controller
             return View(model);
         }
         
-        return RedirectToAction("Index", "Home");;
+        return RedirectToAction("Index", "Movie");;
     }
 
     public async Task<IActionResult> Logout()
     {
         await _userService.Logout();
         
-        return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Movie");
     }
 }
