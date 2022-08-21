@@ -30,7 +30,7 @@ namespace MovieCatalog.Infrastructure.MovieCatalog.Migrations
                     Description = table.Column<string>(type: "text", nullable: false),
                     ReleaseYear_Year = table.Column<int>(type: "integer", nullable: false),
                     Director_Name = table.Column<string>(type: "text", nullable: false),
-                    Path = table.Column<string>(type: "text", nullable: false),
+                    ImageName = table.Column<string>(type: "text", nullable: false),
                     UserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>

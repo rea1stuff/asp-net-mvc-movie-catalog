@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieCatalog.Infrastructure.Identity.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20220817233127_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220821215408_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

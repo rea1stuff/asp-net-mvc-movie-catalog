@@ -6,6 +6,7 @@ using MovieCatalog.Application.Interfaces;
 using MovieCatalog.Domain.Interfaces.Repositories;
 using MovieCatalog.Infrastructure.Identity;
 using MovieCatalog.Infrastructure.MovieCatalog;
+using MovieCatalog.Infrastructure.Repository;
 using MovieCatalog.Infrastructure.Services;
 
 namespace MovieCatalog.Infrastructure;
@@ -21,6 +22,7 @@ public static class Dependencies
             options.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=test;Database=IdentityDb"));
         
         services.AddScoped<IUserIdentityService, UserIdentityService>();
+        services.AddScoped<IImageRepository, ImageRepository>();
         services.AddScoped(
             typeof(IMovieCatalogRepository<>), 
             typeof(MovieCatalogRepository<>));

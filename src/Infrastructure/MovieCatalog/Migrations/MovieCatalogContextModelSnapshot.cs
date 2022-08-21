@@ -33,7 +33,7 @@ namespace MovieCatalog.Infrastructure.MovieCatalog.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Path")
+                    b.Property<string>("ImageName")
                         .IsRequired()
                         .HasColumnType("text");
 

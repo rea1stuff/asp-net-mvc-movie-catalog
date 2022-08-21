@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using MovieCatalog.Application.Exceptions;
 using MovieCatalog.Application.Interfaces;
 using MovieCatalog.Application.Users.Dtos;
@@ -26,13 +27,15 @@ public class UserIdentityService : IUserIdentityService
             Id = uId,
             UserName = registrationDto.UserName
         };
-        
+
         var result = await _userManager.CreateAsync(user, registrationDto.Password);
 
         if (!result.Succeeded)
         {
             throw new IdentityErrorException(result.Errors);
         }
+        
+        await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.NameIdentifier, user.Id));
 
         await _signInManager.SignInAsync(user, true);
     }

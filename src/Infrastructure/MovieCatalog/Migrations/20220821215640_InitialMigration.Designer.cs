@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieCatalog.Infrastructure.MovieCatalog.Migrations
 {
     [DbContext(typeof(MovieCatalogContext))]
-    [Migration("20220817234331_InitialMigration")]
+    [Migration("20220821215640_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,7 @@ namespace MovieCatalog.Infrastructure.MovieCatalog.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Path")
+                    b.Property<string>("ImageName")
                         .IsRequired()
                         .HasColumnType("text");
 
