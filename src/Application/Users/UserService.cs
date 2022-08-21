@@ -8,14 +8,14 @@ namespace MovieCatalog.Application.Users;
 public class UserService : IUserService
 {
     private readonly IUserIdentityService _userIdentityService;
-    private readonly IMovieCatalogRepository<User> _movieCatalogRepository;
+    private readonly IMovieCatalogRepository<User> _userRepository;
 
     public UserService(
         IUserIdentityService userIdentityService, 
-        IMovieCatalogRepository<User> movieCatalogRepository)
+        IMovieCatalogRepository<User> userRepository)
     {
         _userIdentityService = userIdentityService;
-        _movieCatalogRepository = movieCatalogRepository;
+        _userRepository = userRepository;
     }
 
     public async Task Register(RegistrationDto registrationDto)
@@ -23,7 +23,7 @@ public class UserService : IUserService
         string uId = Guid.NewGuid().ToString();
         
         await _userIdentityService.Register(registrationDto, uId);
-        await _movieCatalogRepository.AddAsync(new User(uId));
+        await _userRepository.AddAsync(new User(uId));
     }
 
     public async Task Login(LoginDto loginDto)

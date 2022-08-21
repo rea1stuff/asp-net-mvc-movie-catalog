@@ -8,7 +8,7 @@ public class ReleaseYear
     }
     public ReleaseYear(int year)
     {
-        if (!Enumerable.Range(1000, DateTime.Now.Year).Contains(year))
+        if (year < 1000)
         {
             throw new Exception("ReleaseYear is not valid");
         }
