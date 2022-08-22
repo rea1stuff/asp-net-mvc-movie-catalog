@@ -1,0 +1,40 @@
+
+.details {
+    min-width: 100%;
+    width: 0;
+    word-wrap: break-word;
+    padding: 15px;
+}
+
+.details_header {
+    display: flex;
+    align-items: flex-start;
+}
+
+.details_header img {
+    max-width:800px;
+    max-height:300px;
+    width: auto;
+    height: auto;
+}
+
+.details_header h1 {
+    color: green;
+    margin: 0;
+}
+
+.details_header p {
+    font-size: 1.3rem;
+}
+
+.details_info {
+    margin-left: 50px;
+}
+
+.details_detailedInfo {
+    margin-top: 10px;
+}
+
+.details_description h1 {
+    font-size: 1.5rem;
+}

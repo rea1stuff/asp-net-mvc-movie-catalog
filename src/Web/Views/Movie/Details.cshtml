@@ -1,0 +1,26 @@
+@model MovieCatalog.Application.Movies.Dtos.MovieDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="details">
+    <div class="details_header">
+        <div>
+            <img src="@Url.Content(Model.ImagePath)" class="img-fluid rounded" alt="...">
+        </div>
+        <div class="details_info">
+            <h1>@Model.Title</h1>
+            <div class="details_detailedInfo">
+                <p>Release Year: @Model.ReleaseYear</p>
+                <p>Director: @Model.Director</p>
+            </div>
+        </div>
+    </div>
+    <div class="details_description">
+        <h1>Description</h1>
+        <div class="description_text">
+            <p>@Model.Description</p>
+        </div>
+    </div>
+</div>

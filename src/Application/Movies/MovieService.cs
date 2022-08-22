@@ -31,21 +31,22 @@ public class MovieService : IMovieService
     public async Task CreateMovie(MovieDto model, string uId)
     {
         string fileName = Guid.NewGuid() + $"{Path.GetExtension(model.ImageFile.FileName)}";
+        
         await _imageRepository.SaveAsync(model.ImageFile, fileName);
         var user = await _userRepository.GetByIdAsync(uId);
         Guard.Against.Null(user);
-
-        model.User = user;
+        
         var movie = _mapper.Map<Movie>(model);
         movie.ImageName = fileName;
+        movie.User = user;
         
         await _movieRepository.AddAsync(movie);
         await _movieRepository.SaveChangesAsync();
     }
 
-    public async Task Edit(MovieDto model, int movieId, string uId)
+    public async Task Edit(MovieDto model, string uId)
     {
-        var movie = await _movieRepository.GetBySpecAsync(new MovieWithUserSpec(movieId));
+        var movie = await _movieRepository.GetBySpecAsync(new MovieWithUserSpec(model.Id));
         Guard.Against.Null(movie);
         
         if (movie.User.Id != uId)
@@ -113,7 +114,10 @@ public class MovieService : IMovieService
     public async Task<MovieDto> GetMovieById(int movieId)
     {
         var movie = await _movieRepository.GetByIdAsync(movieId);
-
-        return _mapper.Map<Movie, MovieDto>(movie);
+        
+        var movieDto = _mapper.Map<Movie, MovieDto>(movie);
+        movieDto.ImagePath = _imageRepository.GetRelativePath(movie.ImageName);
+        
+        return movieDto;
     }
 }

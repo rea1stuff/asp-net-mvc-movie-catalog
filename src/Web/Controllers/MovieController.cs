@@ -29,6 +29,13 @@ public class MovieController : ControllerBase
         return View(model);
     }
 
+    public async Task<IActionResult> Details(int movieId)
+    {
+        var model = await _movieService.GetMovieById(movieId);
+
+        return View(model);
+    }
+
     public IActionResult Add()
     {
         return View();
@@ -62,9 +69,9 @@ public class MovieController : ControllerBase
 
     [HttpPost]
     [Authorize]
-    public async Task<IActionResult> Edit(MovieDto model, int movieId)
+    public async Task<IActionResult> Edit(MovieDto model)
     {
-        await _movieService.Edit(model, movieId, UserId);
+        await _movieService.Edit(model, UserId);
         
         return RedirectToAction("Index", "Movie");
     }

@@ -29,7 +29,7 @@ public class ImageRepository : IImageRepository
 
     public string GetRelativePath(string fileName)
     {
-        return ImagesFolderName + fileName;
+        return "~/" + ImagesFolderName + fileName;
     }
 
     public void Delete(string fileName)

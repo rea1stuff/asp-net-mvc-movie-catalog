@@ -12,11 +12,17 @@
 <div class="cards">
     @foreach (var movie in Model.Movies)
     {
-        <div class="card" style="width: 18rem;">
-            <img src="@Url.Content(movie.ImagePath)" class="card-img-top" alt="...">
+        <div class="card" style="width: 20rem;">
+            <a asp-controller="Movie" asp-action="Details" asp-route-movieId="@movie.Id">
+                <img src="@Url.Content(movie.ImagePath)" class="img-fluid card-img-top" alt="...">
+            </a>
             <div class="card-body">
                 <h5 class="card-title">@movie.Title</h5>
-                <p class="card-text">@movie.Description</p>
+                <p class="card-text">
+                    @(
+            movie.Description.Length > 15 ? movie.Description.Substring(0, 80) + "..." : movie.Description
+                        )
+                </p>
                 @if (userId == movie.User.Id)
                 {
                     <div class="card-buttons">
