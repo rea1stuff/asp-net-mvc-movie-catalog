@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieCatalog.Infrastructure.MovieCatalog.Migrations
 {
     [DbContext(typeof(MovieCatalogContext))]
-    [Migration("20220821215640_InitialMigration")]
+    [Migration("20220822185757_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,9 +35,16 @@ namespace MovieCatalog.Infrastructure.MovieCatalog.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Director")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("ImageName")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -68,45 +75,6 @@ namespace MovieCatalog.Infrastructure.MovieCatalog.Migrations
                     b.HasOne("MovieCatalog.Domain.Entities.User", "User")
                         .WithMany("Movies")
                         .HasForeignKey("UserId");
-
-                    b.OwnsOne("MovieCatalog.Domain.Entities.ValueObjects.Director", "Director", b1 =>
-                        {
-                            b1.Property<int>("MovieId")
-                                .HasColumnType("integer");
-
-                            b1.Property<string>("Name")
-                                .IsRequired()
-                                .HasColumnType("text");
-
-                            b1.HasKey("MovieId");
-
-                            b1.ToTable("Movies");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MovieId");
-                        });
-
-                    b.OwnsOne("MovieCatalog.Domain.Entities.ValueObjects.ReleaseYear", "ReleaseYear", b1 =>
-                        {
-                            b1.Property<int>("MovieId")
-                                .HasColumnType("integer");
-
-                            b1.Property<int>("Year")
-                                .HasColumnType("integer");
-
-                            b1.HasKey("MovieId");
-
-                            b1.ToTable("Movies");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MovieId");
-                        });
-
-                    b.Navigation("Director")
-                        .IsRequired();
-
-                    b.Navigation("ReleaseYear")
-                        .IsRequired();
 
                     b.Navigation("User");
                 });

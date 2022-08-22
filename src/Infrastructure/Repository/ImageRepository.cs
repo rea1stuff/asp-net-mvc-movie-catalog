@@ -8,10 +8,11 @@ namespace MovieCatalog.Infrastructure.Repository;
 public class ImageRepository : IImageRepository
 {
     private static string? _directory;
+    private const string ImagesFolderName = "movieImages/";
 
     public ImageRepository(IWebHostEnvironment environment)
     {
-        _directory ??= Path.Combine(environment.WebRootPath, "movieImages/");
+        _directory ??= Path.Combine(environment.WebRootPath, ImagesFolderName);
         
         if (!Directory.Exists(_directory))
         {
@@ -26,9 +27,9 @@ public class ImageRepository : IImageRepository
         await file.CopyToAsync(fileStream);
     }
 
-    public string GetPath(string fileName)
+    public string GetRelativePath(string fileName)
     {
-        return _directory + fileName;
+        return ImagesFolderName + fileName;
     }
 
     public void Delete(string fileName)

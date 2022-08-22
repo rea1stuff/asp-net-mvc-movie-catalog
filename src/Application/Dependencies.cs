@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
+using MovieCatalog.Application.AutoMapper;
 using MovieCatalog.Application.Movies;
 using MovieCatalog.Application.Users;
 using MovieCatalog.Application.Users.Dtos;
@@ -18,5 +19,7 @@ public static class Dependencies
         services.AddFluentValidationClientsideAdapters();
         
         services.AddValidatorsFromAssemblyContaining<RegistrationValidation>();
+
+        services.AddAutoMapper(typeof(DomainProfile));
     }
 }

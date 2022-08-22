@@ -1,0 +1,36 @@
+@model MovieCatalog.Application.Movies.Dtos.MovieDto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form method="post" asp-controller="Movie" asp-action="Edit" asp-route-movieId="@Model.Id" enctype="multipart/form-data">
+    <div>
+        <label asp-for="@Model.Description" class="form-label"></label>
+        <input value="@Model.Title" asp-for="@Model.Title" class="form-control" type="text" required autofocus>
+        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.Description" class="form-label"></label>
+        <input value="@Model.Description" asp-for="@Model.Description" class="form-control" type="text" >
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.ReleaseYear" class="form-label"></label>
+        <input value="@Model.ReleaseYear" asp-for="@Model.ReleaseYear" class="form-control" type="text" >
+        <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Director" class="form-label"></label>
+        <input value="@Model.Director" asp-for="@Model.Director" class="form-control" type="text" >
+        <span asp-validation-for="Director" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.ImageFile" class="form-label"></label>
+        <input asp-for="@Model.ImageFile" class="form-control" type="file" accept="image/*" >
+        <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary ms-auto">
+        Save
+    </button>
+</form>

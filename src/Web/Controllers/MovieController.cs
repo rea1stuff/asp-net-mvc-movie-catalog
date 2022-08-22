@@ -3,28 +3,30 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MovieCatalog.Application.Constants;
 using MovieCatalog.Application.Movies;
 using MovieCatalog.Application.Movies.Dtos;
+using MovieCatalog.Application.Movies.ViewModels;
 
 namespace MovieCatalog.Web.Controllers;
 
-public class MovieController : Controller
+public class MovieController : ControllerBase
 {
     private readonly IValidator<MovieDto> _validator;
     private readonly IMovieService _movieService;
-    private readonly string _uId;
 
     public MovieController(IValidator<MovieDto> validator, IMovieService movieService)
     {
         _validator = validator;
         _movieService = movieService;
-        
-        _uId = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
     }
     
-    public IActionResult Index()
+    public async Task<IActionResult> Index(
+        int pageNumber = 1, int itemsPerPage = PageInfoDefaults.ItemsPerPage)
     {
-        return View();
+        var model = await _movieService.GetMoviesByPage(pageNumber, itemsPerPage);
+        
+        return View(model);
     }
 
     public IActionResult Add()
@@ -45,25 +47,32 @@ public class MovieController : Controller
         }
 
         await _movieService.CreateMovie(
-            model, _uId);
+            model, UserId);
         
         return RedirectToAction("Index", "Movie");
+    }
+    
+    [Authorize]
+    public async Task<IActionResult> Edit(int movieId)
+    {
+        var model = await _movieService.GetMovieById(movieId);
+        
+        return View(model);
     }
 
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> Edit(MovieDto model, int movieId)
     {
-        await _movieService.Edit(model, movieId, _uId);
+        await _movieService.Edit(model, movieId, UserId);
         
         return RedirectToAction("Index", "Movie");
     }
-
-    [HttpPost]
+    
     [Authorize]
     public async Task<IActionResult> Remove(int movieId)
     {
-        await _movieService.Remove(movieId, _uId);
+        await _movieService.Remove(movieId, UserId);
         
         return RedirectToAction("Index", "Movie");
     }

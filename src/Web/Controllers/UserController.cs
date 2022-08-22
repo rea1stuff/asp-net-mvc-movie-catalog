@@ -50,7 +50,7 @@ public class UserController : Controller
                 ModelState.AddModelError(error.Code.Contains("Password") ? "Password" : "", error.Description);
             return View(model);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             ModelState.AddModelError("", "Регистрация не успешна.");
             return View(model);
@@ -65,7 +65,7 @@ public class UserController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(LoginDto model)
+    public async Task<IActionResult> Login(LoginDto model, string? returnUrl = null)
     {
         ValidationResult result = await _loginValidator.ValidateAsync(model);
         
@@ -86,7 +86,11 @@ public class UserController : Controller
             return View(model);
         }
         
-        return RedirectToAction("Index", "Movie");;
+        string redirectUrl = string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl)
+            ? returnUrl
+            : Url.Action("Index", "Movie");
+        
+        return LocalRedirect(redirectUrl);
     }
 
     public async Task<IActionResult> Logout()
