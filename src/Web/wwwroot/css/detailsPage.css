@@ -1,9 +1,9 @@
 
 .details {
+    padding: 15px;
     min-width: 100%;
     width: 0;
     word-wrap: break-word;
-    padding: 15px;
 }
 
 .details_header {
@@ -32,7 +32,12 @@
 }
 
 .details_detailedInfo {
+    max-width: 500px;
     margin-top: 10px;
+}
+
+.details_description {
+
 }
 
 .details_description h1 {

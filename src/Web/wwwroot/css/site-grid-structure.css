@@ -2,6 +2,10 @@ html {
   font-size: 16px;
 }
 
+body{
+  color: #dcdcdc;
+}
+
 p {
   margin: 0;
 }
@@ -15,32 +19,29 @@ p {
   grid-template-columns: 200px 1fr;
   grid-template-rows: 100px 1fr 100px;
   
-  height: 100vh;
-  gap: 0.5em;
+  min-height: 100vh;
+  
+  gap: 0.1em;
+  background: rgb(25,6,73);
+  background: linear-gradient(90deg, rgba(25,6,73,1) 0%, rgba(129,46,197,1) 100%);
 }
 
 header {
   grid-area: header;
   
-  background: mediumpurple;
+
 }
 
 .sidebar{
   grid-area: sidebar;
-
-  background: red;
 }
 
 main {
   grid-area: main;
-  
-  background: yellow;
 }
 
 footer {
   grid-area: footer;
-  
-  background: gold;
 }
 
 header, footer {
