@@ -19,7 +19,7 @@
 }
 
 .details_header h1 {
-    color: green;
+    color: #00b4ff;
     margin: 0;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .details_description {
-
+    max-width: 1000px;
 }
 
 .details_description h1 {

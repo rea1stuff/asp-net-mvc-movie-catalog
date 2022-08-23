@@ -32,7 +32,7 @@ public class MovieService : IMovieService
     {
         string fileName = Guid.NewGuid() + $"{Path.GetExtension(model.ImageFile.FileName)}";
         
-        await _imageRepository.SaveAsync(model.ImageFile, fileName);
+        await _imageRepository.SaveAsync(model.ImageFile.OpenReadStream(), fileName);
         var user = await _userRepository.GetByIdAsync(uId);
         Guard.Against.Null(user);
         
@@ -59,7 +59,7 @@ public class MovieService : IMovieService
         {
             _imageRepository.Delete(movie.ImageName);
             fileName = Guid.NewGuid() + $"{Path.GetExtension(model.ImageFile.FileName)}";
-            await _imageRepository.SaveAsync(model.ImageFile, fileName);
+            await _imageRepository.SaveAsync(model.ImageFile.OpenReadStream(), fileName);
         }
         else
         {

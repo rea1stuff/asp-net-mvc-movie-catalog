@@ -20,7 +20,9 @@
                 <h5 class="card-title">@movie.Title</h5>
                 <p class="card-text">
                     @(
-            movie.Description.Length > 15 ? movie.Description.Substring(0, 80) + "..." : movie.Description
+            movie.Description.Length > 15 
+                ? movie.Description.Substring(0, movie.Description.Length - 1) + "..." 
+                : movie.Description
                         )
                 </p>
                 @if (userId == movie.User.Id)

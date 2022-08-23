@@ -20,11 +20,13 @@ public class ImageRepository : IImageRepository
         }
     }
     
-    public async Task SaveAsync(IFormFile file, string fileName)
+    public async Task SaveAsync(Stream file, string fileName)
     {
         await using var fileStream = 
             File.Create(_directory + fileName);
+        
         await file.CopyToAsync(fileStream);
+        await file.DisposeAsync();
     }
 
     public string GetRelativePath(string fileName)

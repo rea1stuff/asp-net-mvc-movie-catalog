@@ -14,11 +14,4 @@ public class User : BaseEntity<string>, IAggregateRoot
         Id = uId;
     }
     public List<Movie> Movies { get; private set; }
-
-    public void AddMovie(Movie movie)
-    {
-        Guard.Against.Null(movie);
-        
-        Movies.Add(movie);
-    }
 }

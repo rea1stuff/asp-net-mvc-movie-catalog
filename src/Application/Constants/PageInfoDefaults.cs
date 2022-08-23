@@ -2,5 +2,5 @@
 
 public static class PageInfoDefaults
 {
-    public const int ItemsPerPage = 5;
+    public const int ItemsPerPage = 8;
 }
