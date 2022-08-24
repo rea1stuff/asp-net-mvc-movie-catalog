@@ -37,10 +37,13 @@ void ConfigureMiddlewares()
     {
         app.UseDeveloperExceptionPage();
     }
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseExceptionHandler("/Error/Index");
     
+    app.UseHsts();
     app.UseHttpsRedirection();
+    
+    app.UseStatusCodePagesWithRedirects("/Error/{0}");
+    
     app.UseStaticFiles();
     
     app.UseRouting();
