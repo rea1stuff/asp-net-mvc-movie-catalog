@@ -22,7 +22,7 @@ public class MovieController : ControllerBase
     }
     
     public async Task<IActionResult> Index(
-        int pageNumber = 1, int itemsPerPage = PageInfoDefaults.ItemsPerPage)
+        int pageNumber = 0, int itemsPerPage = PageInfoDefaults.ItemsPerPage)
     {
         var model = await _movieService.GetMoviesByPage(pageNumber, itemsPerPage);
         

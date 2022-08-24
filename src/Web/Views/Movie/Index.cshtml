@@ -20,9 +20,9 @@
                 <h5 class="card-title">@movie.Title</h5>
                 <p class="card-text">
                     @(
-            movie.Description.Length > 15 
-                ? movie.Description.Substring(0, movie.Description.Length - 1) + "..." 
-                : movie.Description
+    movie.Description.Length > 15 
+        ? movie.Description.Substring(0, movie.Description.Length - 1) + "..." 
+        : movie.Description
                         )
                 </p>
                 @if (userId == movie.User.Id)
@@ -42,3 +42,49 @@
         </div>
     }
 </div>
+
+<nav aria-label="Page navigation example" class="mt-5">
+    <ul class="pagination justify-content-center">
+        @{
+            var offset = Model.PageInfo.CurrentPageNumber;
+            var inc = 5;
+            switch (Model.PageInfo.CurrentPageNumber)
+            {
+                case 1:
+                    inc = 4;
+                    offset -= 1;
+                    break;
+                case > 1:
+                    offset -= 2;
+                    inc = 3;
+                    break;
+            }
+        }
+        @if (Model.PageInfo.CurrentPageNumber > 3)
+        {
+            <li class="page-item">
+                <a asp-controller="Movie" asp-action="Index" asp-route-pageNumber="0" class="page-link">
+                    i = 0
+                </a>
+            </li>
+        }
+        @for (var i = offset; i < Model.PageInfo.CurrentPageNumber + inc; i++)
+        {
+            var inner = i;
+            <li class="page-item @(Model.PageInfo.CurrentPageNumber == i ? "active" : null)">
+                <a asp-controller="Movie" asp-action="Index" asp-route-pageNumber="@i" class="page-link">
+                    @inner
+                </a>
+            </li>
+        }
+        <li class="page-item">
+
+            <a
+                asp-controller="Movie"
+                asp-action="Index"
+                asp-route-pageNumber="@Model.PageInfo.NextPageNumber" class="page-link">
+                i++
+            </a>
+        </li>
+    </ul>
+</nav>

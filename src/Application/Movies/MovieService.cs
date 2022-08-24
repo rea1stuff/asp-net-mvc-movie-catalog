@@ -92,12 +92,12 @@ public class MovieService : IMovieService
 
     public async Task<MoviesViewModel> GetMoviesByPage(int pageNumber, int itemsPerPage)
     {
-        int skip = (pageNumber - 1) * itemsPerPage;
+        int skip = pageNumber * itemsPerPage;
         
         var movies = 
             await _movieRepository.ListAsync(new MoviesByPageSpec(itemsPerPage, skip));
         var moviesViewModel = new MoviesViewModel();
-        
+
         foreach (var movie in movies)
         {
             var movieDto = _mapper.Map<MovieDto>(movie);
@@ -105,8 +105,9 @@ public class MovieService : IMovieService
             
             moviesViewModel.Movies.Add(movieDto);
         }
-
-        moviesViewModel.PageInfo.PagesCount = await _movieRepository.CountAsync() / itemsPerPage;
+        
+        moviesViewModel.PageInfo.CurrentPageNumber = pageNumber;
+        moviesViewModel.PageInfo.NextPageNumber = ++pageNumber;
         
         return moviesViewModel;
     }

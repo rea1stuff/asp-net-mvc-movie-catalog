@@ -2,5 +2,6 @@
 
 public class PageInfoViewModel
 {
-    public int PagesCount { get; set; }
+    public int CurrentPageNumber { get; set; }
+    public int NextPageNumber { get; set; }
 }
