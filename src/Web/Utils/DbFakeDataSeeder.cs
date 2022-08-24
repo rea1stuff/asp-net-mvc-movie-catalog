@@ -84,7 +84,7 @@ public class DbFakeDataSeeder
             for (int i = 0; i < 500; i++)
             {
                 var user = _fakeUsers[Random.Shared.Next(0, _fakeUsers.Count - 1)];
-                string fileName = fakeFileNames[Random.Shared.Next(0, fakeFileNames.Length - 1)];
+                string fileName = fakeFileNames[Random.Shared.Next(0, fakeFileNames.Length)];
                 
                 var generatedFileName = 
                     Guid.NewGuid() + $"{Path.GetExtension(fileName)}";
@@ -92,9 +92,10 @@ public class DbFakeDataSeeder
                 
                 Movie movie = new()
                 {
-                    Title = faker.Lorem.Lines(),
-                    Description = faker.Lorem.Lines(),
-                    Director = faker.Lorem.Lines(),
+                    Title = faker.Lorem.Sentence(2),
+                    Description = faker.Lorem.Lines(5),
+                    Director = faker.Lorem.Sentence(2),
+                    ReleaseYear = faker.Random.Number(2000, 2022),
                     ImageName = generatedFileName,
                     User = user
                 };

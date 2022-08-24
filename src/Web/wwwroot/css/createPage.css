@@ -1,0 +1,12 @@
+﻿
+
+.movie_inputs {
+    max-width: 500px;
+    padding: 15px;
+}
+
+.movie_inputs_button {
+    display: flex;
+    justify-content: flex-start;
+    padding: 15px;
+}

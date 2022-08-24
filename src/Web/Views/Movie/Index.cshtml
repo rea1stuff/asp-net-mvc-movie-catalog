@@ -12,7 +12,7 @@
 <div class="cards">
     @foreach (var movie in Model.Movies)
     {
-        <div class="card" style="width: 20rem;background: #190649">
+        <div class="card" style="width: 18rem; background: #190649">
             <a asp-controller="Movie" asp-action="Details" asp-route-movieId="@movie.Id">
                 <img src="@Url.Content(movie.ImagePath)" class="img-fluid card-img-top" alt="...">
             </a>
@@ -78,7 +78,6 @@
             </li>
         }
         <li class="page-item">
-
             <a
                 asp-controller="Movie"
                 asp-action="Index"

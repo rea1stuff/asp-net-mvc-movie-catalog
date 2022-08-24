@@ -12,7 +12,7 @@
     </div>
     <div>
         <label asp-for="@Model.Description" class="form-label"></label>
-        <input value="@Model.Description" asp-for="@Model.Description" class="form-control" type="text" >
+        <textarea value="@Model.Description" asp-for="Description" class="form-control" type="text" rows="3"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div>

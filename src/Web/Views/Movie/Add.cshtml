@@ -5,32 +5,47 @@
 }
 
 <form method="post" asp-controller="Movie" asp-action="Add" enctype="multipart/form-data">
-    <div>
-        <label asp-for="Title" class="form-label"></label>
-        <input asp-for="Title" class="form-control" type="text" required autofocus>
-        <span asp-validation-for="Title" class="text-danger"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="movie_inputs">
+                    <div class="mb-2">
+                        <label asp-for="Title" class="form-label"></label>
+                        <input asp-for="Title" class="form-control" type="text" required autofocus>
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control" type="text" rows="3"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="ReleaseYear" class="form-label"></label>
+                        <input asp-for="ReleaseYear" class="form-control" type="text">
+                        <span asp-validation-for="ReleaseYear" class="text-danger"></span>
+                    </div>
+                    <div class="mb-2">
+                        <label asp-for="Director" class="form-label"></label>
+                        <input asp-for="Director" class="form-control" type="text">
+                        <span asp-validation-for="Director" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="w-75">
+                    <label asp-for="ImageFile" class="form-label"></label>
+                    <input asp-for="ImageFile" class="form-control" type="file" accept="image/*">
+                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-flex justify-content-center mt-5">
+                <button type="submit" class="btn btn-primary w-25">
+                    Save
+                </button>
+            </div>
+        </div>
     </div>
-    <div>
-        <label asp-for="Description" class="form-label"></label>
-        <input asp-for="Description" class="form-control" type="text" >
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="ReleaseYear" class="form-label"></label>
-        <input asp-for="ReleaseYear" class="form-control" type="text" >
-        <span asp-validation-for="ReleaseYear" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Director" class="form-label"></label>
-        <input asp-for="Director" class="form-control" type="text" >
-        <span asp-validation-for="Director" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="ImageFile" class="form-label"></label>
-        <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" >
-        <span asp-validation-for="ImageFile" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary ms-auto">
-        Save
-    </button>
+
 </form>
