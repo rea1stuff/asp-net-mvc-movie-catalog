@@ -5,6 +5,15 @@
     padding: 15px;
 }
 
+.movie_inputs_img {
+    max-width: 44%;
+    height:auto;
+}
+
+.image_input {
+    max-width: 500px;
+}
+
 .movie_inputs_button {
     display: flex;
     justify-content: flex-start;
