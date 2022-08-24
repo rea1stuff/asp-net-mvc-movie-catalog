@@ -15,7 +15,7 @@ var scopedProvider = scope.ServiceProvider;
 
 ApplyMigrations();
 
-SeedDb();
+//SeedDb();
 
 ConfigureMiddlewares();
 

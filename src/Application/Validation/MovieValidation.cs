@@ -11,6 +11,5 @@ public class MovieValidation : AbstractValidator<MovieDto>
         RuleFor(x => x.Description).NotEmpty();
         RuleFor(x => x.ReleaseYear).NotEmpty().GreaterThan(1000);
         RuleFor(x => x.Director).NotEmpty();
-        RuleFor(x => x.ImageFile).NotEmpty();
     }
 }

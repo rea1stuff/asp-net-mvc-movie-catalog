@@ -9,6 +9,9 @@ public class ErrorController : Controller
 
     [Route("[controller]/404")]
     public IActionResult Error404() => View();
+    
+    [Route("[controller]/500")]
+    public IActionResult Error500() => View();
 
     public IActionResult Index() => View();
 }

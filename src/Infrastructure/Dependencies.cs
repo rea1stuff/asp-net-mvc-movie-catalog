@@ -29,5 +29,10 @@ public static class Dependencies
 
         services.AddIdentity<UserIdentity, IdentityRole>()
             .AddEntityFrameworkStores<IdentityDbContext>();
+        
+        services.ConfigureApplicationCookie(options =>
+        {
+            options.LoginPath = "/User/Login";
+        });
     }
 }

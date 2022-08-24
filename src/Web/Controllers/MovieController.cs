@@ -20,12 +20,12 @@ public class MovieController : ControllerBase
         _validator = validator;
         _movieService = movieService;
     }
-    
+
     public async Task<IActionResult> Index(
         int pageNumber = 0, int itemsPerPage = PageInfoDefaults.ItemsPerPage)
     {
         var model = await _movieService.GetMoviesByPage(pageNumber, itemsPerPage);
-        
+
         return View(model);
     }
 
@@ -40,13 +40,19 @@ public class MovieController : ControllerBase
     {
         return View();
     }
-    
+
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> Add(MovieDto model)
     {
-        var result = await _validator.ValidateAsync(model);
+        if (model.ImageFile is null)
+        {
+            ModelState.AddModelError("ImageFile", "The ImageFile field is required.");
+            return View(model);
+        }
         
+        var result = await _validator.ValidateAsync(model);
+
         if (!result.IsValid)
         {
             result.AddToModelState(ModelState, null);
@@ -55,15 +61,15 @@ public class MovieController : ControllerBase
 
         await _movieService.CreateMovie(
             model, UserId);
-        
+
         return RedirectToAction("Index", "Movie");
     }
-    
+
     [Authorize]
     public async Task<IActionResult> Edit(int movieId)
     {
         var model = await _movieService.GetMovieById(movieId);
-        
+
         return View(model);
     }
 
@@ -71,16 +77,24 @@ public class MovieController : ControllerBase
     [Authorize]
     public async Task<IActionResult> Edit(MovieDto model)
     {
+        var result = await _validator.ValidateAsync(model);
+
+        if (!result.IsValid)
+        {
+            result.AddToModelState(ModelState, null);
+            return View(model);
+        }
+
         await _movieService.Edit(model, UserId);
-        
+
         return RedirectToAction("Index", "Movie");
     }
-    
+
     [Authorize]
     public async Task<IActionResult> Remove(int movieId)
     {
         await _movieService.Remove(movieId, UserId);
-        
+
         return RedirectToAction("Index", "Movie");
     }
 }

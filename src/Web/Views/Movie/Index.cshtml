@@ -20,9 +20,9 @@
                 <h5 class="card-title">@movie.Title</h5>
                 <p class="card-text">
                     @(
-    movie.Description.Length > 15 
-        ? movie.Description.Substring(0, movie.Description.Length - 1) + "..." 
-        : movie.Description
+            movie.Description.Length > 15
+                ? movie.Description.Substring(0, movie.Description.Length - 1) + "..."
+                : movie.Description
                         )
                 </p>
                 @if (userId == movie.User.Id)
@@ -43,9 +43,10 @@
     }
 </div>
 
-<nav aria-label="Page navigation example" class="mt-5">
+<nav aria-label="Page navigation" class="mt-5">
     <ul class="pagination justify-content-center">
-        @{
+        @if (Model.PageInfo.TotalPagesCount > 5)
+        {
             var offset = Model.PageInfo.CurrentPageNumber;
             var inc = 5;
             switch (Model.PageInfo.CurrentPageNumber)
@@ -59,31 +60,44 @@
                     inc = 3;
                     break;
             }
-        }
-        @if (Model.PageInfo.CurrentPageNumber > 3)
-        {
+
+            if (Model.PageInfo.CurrentPageNumber > 3)
+            {
+                <li class="page-item">
+                    <a asp-controller="Movie" asp-action="Index" asp-route-pageNumber="0" class="page-link">
+                        i = 0
+                    </a>
+                </li>
+            }
+            for (var i = offset; i < Model.PageInfo.CurrentPageNumber + inc; i++)
+            {
+                var inner = i;
+                <li class="page-item @(Model.PageInfo.CurrentPageNumber == i ? "active" : null)">
+                    <a asp-controller="Movie" asp-action="Index" asp-route-pageNumber="@i" class="page-link">
+                        @inner
+                    </a>
+                </li>
+            }
             <li class="page-item">
-                <a asp-controller="Movie" asp-action="Index" asp-route-pageNumber="0" class="page-link">
-                    i = 0
+                <a
+                    asp-controller="Movie"
+                    asp-action="Index"
+                    asp-route-pageNumber="@Model.PageInfo.NextPageNumber" class="page-link">
+                    i++
                 </a>
             </li>
         }
-        @for (var i = offset; i < Model.PageInfo.CurrentPageNumber + inc; i++)
+        else
         {
-            var inner = i;
-            <li class="page-item @(Model.PageInfo.CurrentPageNumber == i ? "active" : null)">
-                <a asp-controller="Movie" asp-action="Index" asp-route-pageNumber="@i" class="page-link">
-                    @inner
-                </a>
-            </li>
+            for (var i = 0; i < Model.PageInfo.TotalPagesCount; i++)
+            {
+                var inner = i;
+                <li class="page-item @(Model.PageInfo.CurrentPageNumber == i ? "active" : null)">
+                    <a asp-controller="Movie" asp-action="Index" asp-route-pageNumber="@i" class="page-link">
+                        @inner
+                    </a>
+                </li>
+            }
         }
-        <li class="page-item">
-            <a
-                asp-controller="Movie"
-                asp-action="Index"
-                asp-route-pageNumber="@Model.PageInfo.NextPageNumber" class="page-link">
-                i++
-            </a>
-        </li>
     </ul>
 </nav>

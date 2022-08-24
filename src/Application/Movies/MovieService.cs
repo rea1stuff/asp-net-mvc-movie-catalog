@@ -1,5 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 using AutoMapper;
+using MovieCatalog.Application.Exceptions;
 using MovieCatalog.Application.Interfaces;
 using MovieCatalog.Application.Movies.Dtos;
 using MovieCatalog.Application.Movies.ViewModels;
@@ -51,11 +52,11 @@ public class MovieService : IMovieService
         
         if (movie.User.Id != uId)
         {
-            throw new Exception();
+            throw new NotAllowedException();
         }
 
         string fileName;
-        if (model.ImageFile != null)
+        if (model.ImageFile is not null && model.ImageFile.Length != 0)
         {
             _imageRepository.Delete(movie.ImageName);
             fileName = Guid.NewGuid() + $"{Path.GetExtension(model.ImageFile.FileName)}";
@@ -108,6 +109,7 @@ public class MovieService : IMovieService
         
         moviesViewModel.PageInfo.CurrentPageNumber = pageNumber;
         moviesViewModel.PageInfo.NextPageNumber = ++pageNumber;
+        moviesViewModel.PageInfo.TotalPagesCount = await _movieRepository.CountAsync() / itemsPerPage;
         
         return moviesViewModel;
     }

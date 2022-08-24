@@ -86,9 +86,9 @@ public class UserController : Controller
             return View(model);
         }
         
-        string redirectUrl = string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl)
-            ? returnUrl
-            : Url.Action("Index", "Movie");
+        string redirectUrl = string.IsNullOrWhiteSpace(returnUrl) && !Url.IsLocalUrl(returnUrl)
+            ? Url.Action("Index", "Movie")
+            : returnUrl;
         
         return LocalRedirect(redirectUrl);
     }
