@@ -1,5 +1,4 @@
-﻿using Ardalis.GuardClauses;
-using MovieCatalog.Domain.Interfaces;
+﻿using MovieCatalog.Domain.Interfaces;
 
 namespace MovieCatalog.Domain.Entities;
 

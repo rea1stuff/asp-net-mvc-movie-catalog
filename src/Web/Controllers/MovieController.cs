@@ -1,12 +1,10 @@
-﻿using System.Security.Claims;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieCatalog.Application.Constants;
 using MovieCatalog.Application.Movies;
 using MovieCatalog.Application.Movies.Dtos;
-using MovieCatalog.Application.Movies.ViewModels;
 
 namespace MovieCatalog.Web.Controllers;
 

@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using MovieCatalog.Application.Interfaces;
-using MovieCatalog.Domain.Interfaces.Repositories;
 
 namespace MovieCatalog.Infrastructure.Repository;
 

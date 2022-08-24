@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using MovieCatalog.Application.AutoMapper;
 using MovieCatalog.Application.Movies;
 using MovieCatalog.Application.Users;
-using MovieCatalog.Application.Users.Dtos;
 using MovieCatalog.Application.Validation;
 
 namespace MovieCatalog.Application;

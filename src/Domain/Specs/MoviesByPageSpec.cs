@@ -7,6 +7,6 @@ public sealed class MoviesByPageSpec : Specification<Movie>, ISingleResultSpecif
 {
     public MoviesByPageSpec(int take, int skip)
     {
-        Query.Include(x => x.User).Skip(skip).Take(take);
+        Query.Include(x => x.User).Skip(skip).Take(take).OrderByDescending(x => x.Id);
     }
 }

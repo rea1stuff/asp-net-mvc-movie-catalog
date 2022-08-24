@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 using MovieCatalog.Infrastructure.Identity;
 using MovieCatalog.Infrastructure.MovieCatalog;
@@ -15,7 +14,7 @@ var scopedProvider = scope.ServiceProvider;
 
 ApplyMigrations();
 
-//SeedDb();
+SeedDb();
 
 ConfigureMiddlewares();
 

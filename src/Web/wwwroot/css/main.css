@@ -5,9 +5,3 @@
     justify-items: center;
     margin-top: 20px;
 }
-
-.card-buttons {
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
-}

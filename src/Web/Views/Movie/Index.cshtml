@@ -17,24 +17,28 @@
                 <img src="@Url.Content(movie.ImagePath)" class="img-fluid card-img-top" alt="...">
             </a>
             <div class="card-body">
-                <h5 class="card-title">@movie.Title</h5>
-                <p class="card-text">
-                    @(
+                <div>
+                    <h5 class="card-title">@movie.Title</h5>
+                    <p class="card-text">
+                        @(
             movie.Description.Length > 15
                 ? movie.Description.Substring(0, movie.Description.Length - 1) + "..."
                 : movie.Description
-                        )
-                </p>
+                            )
+                    </p>
+                </div>
+            </div>
+            <div class="card-footer">
                 @if (userId == movie.User.Id)
                 {
-                    <div class="card-buttons">
+                    <div class="p-3 d-flex justify-content-between">
                         <a asp-controller="Movie" asp-action="Edit" asp-route-movieId="@movie.Id"
-                           class="btn btn-warning">
-                            Редактировать
+                           class="btn btn-warning" style="min-width: 100px">
+                            Edit
                         </a>
                         <a asp-controller="Movie" asp-action="Remove" asp-route-movieId="@movie.Id"
-                           class="btn btn-danger">
-                            Удалить
+                           class="btn btn-danger" style="min-width: 100px">
+                            Remove
                         </a>
                     </div>
                 }

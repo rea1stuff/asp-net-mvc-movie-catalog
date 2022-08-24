@@ -83,7 +83,7 @@ public class DbFakeDataSeeder
         
             for (int i = 0; i < 500; i++)
             {
-                var user = _fakeUsers[Random.Shared.Next(0, _fakeUsers.Count - 1)];
+                var user = _fakeUsers[Random.Shared.Next(0, _fakeUsers.Count)];
                 string fileName = fakeFileNames[Random.Shared.Next(0, fakeFileNames.Length)];
                 
                 var generatedFileName = 

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
-namespace MovieCatalog.Application.Users.Dtos;
+﻿namespace MovieCatalog.Application.Users.Dtos;
 
 public class RegistrationDto
 {

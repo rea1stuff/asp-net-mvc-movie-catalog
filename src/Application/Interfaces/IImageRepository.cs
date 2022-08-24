@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace MovieCatalog.Application.Interfaces;
+﻿namespace MovieCatalog.Application.Interfaces;
 
 public interface IImageRepository
 {

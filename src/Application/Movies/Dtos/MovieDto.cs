@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using MovieCatalog.Domain.Entities;
 
 namespace MovieCatalog.Application.Movies.Dtos;
