@@ -6,6 +6,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>MovieCatalog.Web</RootNamespace>
         <AssemblyName>Web</AssemblyName>
+        <UserSecretsId>1bc3a330-f62a-4cce-bf67-4e7b6ea3c42c</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..</DockerfileContext>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,6 +27,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     </ItemGroup>
 
 </Project>

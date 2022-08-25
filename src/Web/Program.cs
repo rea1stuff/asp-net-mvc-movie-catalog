@@ -26,7 +26,7 @@ void ConfigureServices()
 {
     builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
     MovieCatalog.Application.Dependencies.AddApplication(builder.Services);
-    MovieCatalog.Infrastructure.Dependencies.AddInfrastructure(builder.Services);
+    MovieCatalog.Infrastructure.Dependencies.AddInfrastructure(builder.Services, builder.Configuration);
     builder.Services.AddScoped<DbFakeDataSeeder>();
 }
 
@@ -38,8 +38,8 @@ void ConfigureMiddlewares()
     }
     app.UseExceptionHandler("/Error/Index");
     
-    app.UseHsts();
-    app.UseHttpsRedirection();
+    //app.UseHsts();
+    //app.UseHttpsRedirection();
     
     app.UseStatusCodePagesWithRedirects("/Error/{0}");
     
